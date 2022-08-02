@@ -1,0 +1,15 @@
+body{background: grey}
+.gird_item{
+    border:1px solid black;
+}
+.container{
+    display:grid;grid-template-columns: 20% 20% 20% 20%;
+    justify-content: center;
+}
+.container2{
+    display:grid;grid-template-columns: 20% 20% 20% 20%;
+    justify-content: center;
+}
+
+.delete_input{background-color:grey;cursor: pointer;}
+.delete_input:hover{background-color:green;}

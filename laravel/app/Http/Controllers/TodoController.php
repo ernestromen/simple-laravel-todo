@@ -15,22 +15,13 @@ class TodoController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-//$title = $request->old('title');
-
-//<input type="text" name="title" value="{{ old('title') }}">
-
-
    
     public function store(Request $request)
     {
 
         $data = $request->validate([
             'name'=>'required',
-            'email'=>'required|email|min:3'
+            'email'=>'required|email|min:3|unique:todos'
         ]); 
         Todo::create($data);
         return redirect()->back();
@@ -45,13 +36,20 @@ class TodoController extends Controller
   
     public function edit($id)
     {
-        dd('edit!');
-
+return view('myapp/edit');
     }
 
     public function update(Request $request, $id)
     {
-        dd('updated!');
+
+        $user = Todo::find($id);
+        $data = $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|min:3'
+        ]); 
+        $user->update($data);
+        return redirect('/');
+
     }
 
  

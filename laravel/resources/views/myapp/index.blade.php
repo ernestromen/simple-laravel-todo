@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {{-- <link rel="stylesheet" href=""> --}}
+
     <style>
         body{background: grey}
         .gird_item{
@@ -47,9 +49,10 @@
         <br>
     
         @endif
-
+        <label>name</label><br>
         <input style="margin-bottom: 5px" type="text" name="name" id=""><br/>
-       
+        <label>email</label><br>
+
         <input style="margin-bottom:5px" type="text" name="email" id=""><br/>
       
         <input type="submit" >
@@ -58,41 +61,37 @@
    
 
     @if(count($todos) > 0)
-
      <div style="margin-top:31px;" class="container" >
      <div class="gird_item">id</div>
      <div class="gird_item">name</div>
      <div class="gird_item">email</div>
      <div class="gird_item"></div>
     </div>
-<div class="container" >
+    <div class="container" >
     @foreach ($todos as $res)
     <div class="gird_item">{{$res->id}}</div>
     <div class="gird_item">{{$res->name}}</div>
     <div class="gird_item">{{$res->email}}</div>
     <div style="border:1px solid black;" class="container">
-<div style="background-color:red; ;border-radius:35px;margin-top:5px;margin-bottom:5px;">
-    <form action="{{ route('destroy',$res->id) }}"  method="POST">
-        @csrf
-        <input class="delete_input" style="background-color:transparent;border:0px;color:white" type="submit" value="delete" >
-    </form>
-</div>
-        <div  style="background-color:green; ;border-radius:35px;margin-top:5px;margin-bottom:5px;">
+        <div style="background-color:red; ;border-radius:35px;margin-top:5px;margin-bottom:5px;margin-right:7px;">
+            <form action="{{ route('destroy',$res->id) }}"  method="POST">
+                @csrf
+                <input class="delete_input" style="background-color:transparent;border:0px;color:white" type="submit" value="delete" >
+            </form>
+        </div>
+        <div  style="background-color:green; ;border-radius:35px;margin-top:5px;margin-bottom:5px;margin-left:7px;">
             <a href="{{ route('edit',$res->id) }}">
             <button style="background-color:transparent;border:0px;color:white;cursor: pointer;">edit</button>   
             </a>         
         </div>
-        <div style="background-color:rgb(13, 13, 141); color:white;border-radius:35px;margin-top:5px;margin-bottom:5px;">
-            <a href="{{ route('update',$res->id) }}">
-            <button style="background-color:transparent;border:0px;color:white;cursor: pointer;">update</button>     
-            </a>       
-        </div>
+     
     </div>
 
     @endforeach
-</div>
-@endif
-     
+    </div>
+    @else
+    <h3>There are no users</h3>
+    @endif   
 </div>
 </body>
 <script>
